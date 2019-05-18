@@ -66,8 +66,8 @@
       const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
       const sound = document.querySelector(`audio[data-key="${e.keyCode}"]`);
 
-      if (!sound) return;
-      sound.currentTime = 0;
+      if (!sound) return; // If the window doesn't contain a key
+      sound.currentTime = 0; //To listen the initial sound of a key everytime you press it againg
       sound.play();
 
       key.classList.add('playing');
@@ -85,7 +85,12 @@
     window.addEventListener('keydown', playSound);
 
     const keys = document.querySelectorAll('.key');
-    keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+    keys.forEach(key => key.addEventListener('transitionend', removeTransition)); 
+
+    /* 
+    With removeTransition function, you can make sure that the time of the transition can only be handled by the css 
+    declaration in the .key selector .key { transition: all .07s ease; } Better alternative to setTimeout() function 
+    */
 
   </script>
 
